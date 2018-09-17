@@ -46,8 +46,39 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 
 }
+Player.prototype.handleInput = function(pressedKeys){
+    if (pressedKeys === 'left' && this.x > 33){
+        this.x -=100;
+    }
+    if (pressedKeys === 'right' && this.x < 400){
+        this.x +=100;
+    }
+    if (pressedKeys === 'up' && this.y > 18){
+        this.y -=80;
+    }
+    if (pressedKeys === 'down' && this.y < 380){
+        this.y +=80;
+    }
 
+}
 
+// possible X-axis positions on board
+var columns = [ -5, -100, -200, -300, -400];
+var enemyX;
+
+// possible Y-axis positions on board
+var rows = [ 60, 140, 220];
+var enemyY;
+
+var enemySpeed;
+
+// this is to randomly pick locations for bugs
+setInterval(function instances(){
+    enemyX = columns[Math.floor(Math.random() * 5)],
+    enemyY = rows[Math.floor(Math.random() * 3)],
+    enemySpeed = Math.floor(Math.random() * 15),
+    allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed)); 
+},500)
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
