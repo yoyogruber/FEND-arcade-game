@@ -1,5 +1,7 @@
+
+const COLLIDED  = 50; 
 // Enemies our player must avoid
-var Enemy = function(x,y, speed=1) {
+class Enemy { constructor(x,y,speed) {
     this.x= x;
     this.y= y;
     this.location = (x,y);
@@ -7,6 +9,10 @@ var Enemy = function(x,y, speed=1) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+}
+
+
+
 };
 
 // Update the enemy's position, required method for game
@@ -17,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    // collision detection goes here
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -28,25 +34,42 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var playerPosX, playerPosY;
 
-var Player = function (x,y){
+class Player {constructor (x,y){
 this.x = x;
 this.y = y;
+this.startX = 200;
+this.startY = 400;
 this.sprite = 'images/char-boy.png';
-};
-var playerPosX;
-var playerPosY;
-Player.prototype.update =function(){
-    playerPosX= this.x;
-    playerPosY = this.y;
+}
+// Methods: 
 
- }
-
-Player.prototype.render = function() {
+    update() {
+     // Check collision here
+        for(let enemy of allEnemies) {
+           
+            // Did player x and y collide with enemy?
+            if (this.y >= enemy.y - COLLIDED && (enemy.x + enemy.step/2 - COLLIDED > this.x && enemy.x -COLLIDED < this.x + this.step/2) ) {
+                this.reset();
+                console.log(enemy);
+                console.log(this.y);
+            }   
+        }
+    
+         // Did player x and y reach final tile?
+        if(this.y === 55) {
+            this.victory = true;
+        }
+           
+    }
+ 
+    render() {
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 
-}
-Player.prototype.handleInput = function(pressedKeys){
+    }
+
+    handleInput(pressedKeys){
     if (pressedKeys === 'left' && this.x > 33){
         this.x -=100;
     }
@@ -60,8 +83,15 @@ Player.prototype.handleInput = function(pressedKeys){
         this.y +=80;
     }
 
-}
+    }
+// Reset hero
+    reset() {
+        this.y = this.startY;
+        this.x = this.startX;
 
+    }
+
+};
 // possible X-axis positions on board
 var columns = [ -5, -100, -200, -300, -400];
 var enemyX;
@@ -100,3 +130,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
