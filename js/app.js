@@ -48,12 +48,13 @@ this.sprite = 'images/char-boy.png';
     update() {
      // Check collision here
         for(let enemy of allEnemies) {
-           
+
             // Did player x and y collide with enemy?
-            if (this.y >= enemy.y - COLLIDED && (enemy.x + enemy.step/2 - COLLIDED > this.x && enemy.x -COLLIDED < this.x + this.step/2) ) {
+            if (this.y >= enemy.y - COLLIDED && this.y <= enemy.y + COLLIDED && (this.x >= enemy.x - COLLIDED && this.x <= enemy.x + COLLIDED)) {
                 this.reset();
                 console.log(enemy);
                 console.log(this.y);
+
             }   
         }
     
