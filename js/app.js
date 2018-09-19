@@ -51,16 +51,19 @@ this.sprite = 'images/char-boy.png';
 
             // Did player x and y collide with enemy?
             if (this.y >= enemy.y - COLLIDED && this.y <= enemy.y + COLLIDED && (this.x >= enemy.x - COLLIDED && this.x <= enemy.x + COLLIDED)) {
+                alert('The enemy got you!', 'that was close!<br>try again?');
                 this.reset();
-                console.log(enemy);
-                console.log(this.y);
-
+            
             }   
         }
     
          // Did player x and y reach final tile?
-        if(this.y === 55) {
+        if(this.y <= 0) {
+
             this.victory = true;
+            alert('You win!', 'Congratulations!<br>You got Catgirl to the water!');
+            this.reset();
+
         }
            
     }
