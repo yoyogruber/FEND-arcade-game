@@ -53,6 +53,8 @@ this.sprite = 'images/char-boy.png';
             // Did player x and y collide with enemy?
             if (this.y >= enemy.y - COLLIDED && this.y <= enemy.y + COLLIDED && (this.x >= enemy.x - COLLIDED && this.x <= enemy.x + COLLIDED)) {
                 alertify.alert('The enemy got you!', 'that was close!<br>try again?');
+                score=0;
+                document.getElementById("score").innerText = score;
                 this.reset();
             
             }   
@@ -61,8 +63,9 @@ this.sprite = 'images/char-boy.png';
          // Did player x and y reach final tile?
         if(this.y <= 0) {
 
-            this.victory = true;
+            score +=1;
             alertify.alert('You win!', 'Congratulations!<br>You got Catboy to the finishing line!');
+            document.getElementById("score").innerText = score;
             this.reset();
 
         }

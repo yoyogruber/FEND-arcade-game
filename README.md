@@ -13,4 +13,4 @@ User the 'left' 'right' 'up' 'down' arrow keys to control the player.
 The goal of the game is to bring the player onto the other side (waterline) without being hit by a bug.
 
 # Used frameworks
-
+I used the alertify library and the semantic theme that can all be found here [https://alertifyjs.com/](https://alertifyjs.com/).
