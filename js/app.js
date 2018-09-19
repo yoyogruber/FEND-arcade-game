@@ -116,7 +116,7 @@ setInterval(function instances(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(-8, 60, 3), new Enemy (0, 140, 10), new Enemy (-5, 300, 15)];
+var allEnemies = [new Enemy(-8, 60, 3), new Enemy (0, 140, 10), new Enemy (-5, 100, 15)];
 
 // Player Object is assigned a variable
 var player = new Player (200, 300);
