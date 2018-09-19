@@ -1,3 +1,10 @@
 body {
     text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #a7b1ce;
+}
+
+h1 {
+	font-size: 22px;
+	color: #3a3d44;
 }
